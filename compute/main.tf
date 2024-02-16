@@ -55,7 +55,7 @@ resource "aws_instance" "mtc_node" {
       type  = "ssh"
       user = "ubuntu"
       host = self.public_ip
-      private_key = var.private_key_path
+      private_key = file(var.private_key_path)
     }
 
     script = "${path.cwd}/delay.sh"
@@ -67,7 +67,7 @@ resource "aws_instance" "mtc_node" {
         nodeip   = self.public_ip
         k3s_path = "${path.cwd}/../"
         nodename = self.tags.Name
-        private_key = var.private_key_path
+        private_key_path = var.private_key_path
     })
   }
 

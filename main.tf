@@ -51,8 +51,8 @@ module "compute" {
   public_sg           = module.networking.public_sg
   public_subnets      = module.networking.public_subnets
   vol_size            = 10
-  key_name            = "keymtc"
-  public_key_path     = "~/.ssh/keymtc.pub"
+  key_name            = "kube_rsa"
+  public_key_path     = "~/.ssh/kube_rsa.pub"
   user_data_path      = "${path.root}/userdata.tpl"
   db_name             = var.db_name
   db_pass             = var.db_password
@@ -60,6 +60,6 @@ module "compute" {
   db_endpoint         = module.database.database_endpoint
   lb_target_group_arn = module.loadbalancing.lb_target_group_arn
   target_group_port   = 8000
-  private_key_path = file("~/.ssh/keymtc")
+  private_key_path = "/home/mmer2/.ssh/kube_rsa"
 
 }
